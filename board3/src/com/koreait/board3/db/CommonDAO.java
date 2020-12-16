@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 public class CommonDAO {
+	//u, d, i
 	public static int executeUpdate(String sql, SQLInterUpdate siu) {
 		Connection con = null;
 		PreparedStatement ps = null;		
