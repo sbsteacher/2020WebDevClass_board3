@@ -11,13 +11,15 @@
 			<td>제목</td>
 			<td>조회수</td>
 			<td>작성일</td>
+			<td>작성자</td>
 		</tr>		
 		<c:forEach items="${list}" var="item">
-			<tr class="pointer" onclick="clkArticle(${typ}, ${item.i_board})">
-				<td>${item.i_board}</td>
+			<tr class="pointer" onclick="clkArticle(${item.i_board})">
+				<td>${item.seq}</td>
 				<td>${item.title}</td>
 				<td>${item.hits}</td>
 				<td>${item.r_dt}</td>
+				<td>${item.nm}</td>
 			</tr>
 		</c:forEach>
 	</table>

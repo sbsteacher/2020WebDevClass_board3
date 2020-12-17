@@ -20,7 +20,7 @@ public class UserDAO extends CommonDAO {
 			ps.setString(1, p.getUser_id());
 			rs = ps.executeQuery();			
 			if(rs.next()) {
-				UserModel m= new UserModel();
+				UserModel m = new UserModel();
 				m.setI_user(rs.getInt("i_user"));
 				m.setNm(rs.getString("nm"));
 				m.setUser_pw(rs.getString("user_pw"));
