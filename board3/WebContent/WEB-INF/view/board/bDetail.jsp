@@ -2,18 +2,18 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div>
-	<a href="/bList?typ=${data.typ}">돌아가기</a>
-	<form action="/bDetail" method="post" onsubmit="isDel(event)">
-		<input type="hidden" name="typ" value="${data.typ}">
-		<input type="hidden" name="i_board" value="${data.i_board}">
-		<input type="submit" value="삭제">
-	</form>
-	<a href="/bRegmod?typ=${data.typ}&i_board=${data.i_board}">
-		<button>수정</button>
-	</a>
+	<a href="list?typ=${data.typ}">돌아가기</a>
+	
+	<c:if test="${data.i_user == loginUser.i_user}">
+		<button onclick="clkDel(${data.i_board}, ${data.typ});">삭제</button>
+		<a href="bRegmod?i_board=${data.i_board}">
+			<button>수정</button>
+		</a>
+	</c:if>
 	<div>
-		<div>번호 : ${data.i_board}</div>
+		<div>번호 : ${data.seq}</div>
 		<div>조회수 : ${data.hits}</div>
+		<div>이름 : ${data.nm}</div>
 		<div>제목 : ${data.title}</div>
 		<div>작성일 : ${data.r_dt}</div>
 		<div>

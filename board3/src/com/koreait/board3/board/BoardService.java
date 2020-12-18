@@ -50,8 +50,45 @@ public class BoardService {
 			});			
 		} else { //수정
 			
-		}
-		
+		}		
 		return 0;
 	}
+	
+	public static BoardSEL detail(HttpServletRequest request) {
+		int i_board = Utils.getIntParam(request, "i_board");
+		BoardPARAM p = new BoardPARAM();
+		p.setI_board(i_board);
+		
+		return BoardDAO.selBoard(p);
+	}
+	
+	public static int del(HttpServletRequest request) {
+		int i_board = Utils.getIntParam(request, "i_board");
+		int i_user = SecurityUtils.getLoingUserPk(request);
+		
+		String sql = " DELETE FROM t_board WHERE i_board = ? AND i_user = ? ";
+		
+		return BoardDAO.executeUpdate(sql, new SQLInterUpdate() {
+			@Override
+			public void proc(PreparedStatement ps) throws SQLException {
+				ps.setInt(1, i_board);
+				ps.setInt(2, i_user);
+			}
+		});
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
