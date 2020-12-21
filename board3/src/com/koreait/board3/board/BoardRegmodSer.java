@@ -30,6 +30,8 @@ public class BoardRegmodSer extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.sendRedirect(BoardService.regMod(request));
+		/*
 		int i_board = Utils.getIntParam(request, "i_board");
 		
 		int result = BoardService.regMod(request);
@@ -41,6 +43,7 @@ public class BoardRegmodSer extends HttpServlet {
 			String typ = request.getParameter("typ");
 			response.sendRedirect("list?typ=" + typ);	
 		}
+		*/
 	}
 
 }

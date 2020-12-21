@@ -23,7 +23,7 @@ public class BoardService {
 		request.setAttribute("list", BoardDAO.selBoardList(p));
 	}
 	
-	public static int regMod(HttpServletRequest request) {
+	public static String regMod(HttpServletRequest request) {
 		int i_board = Utils.getIntParam(request, "i_board");
 		int typ = Utils.getIntParam(request, "typ");
 		String title = request.getParameter("title");
@@ -38,7 +38,7 @@ public class BoardService {
 					+ " FROM t_board "
 					+ " WHERE typ = ? ";
 			
-			return BoardDAO.executeUpdate(sql, new SQLInterUpdate() {
+			BoardDAO.executeUpdate(sql, new SQLInterUpdate() {
 				@Override
 				public void proc(PreparedStatement ps) throws SQLException {
 					ps.setInt(1, typ);
@@ -48,6 +48,8 @@ public class BoardService {
 					ps.setInt(5, typ);
 				}
 			});			
+			
+			return "list?typ=" + typ;
 		} else { //수정
 			String sql = " UPDATE t_board "
 					+ " SET title = ? "
@@ -55,7 +57,7 @@ public class BoardService {
 					+ " WHERE i_board = ? "
 					+ " AND i_user = ? ";
 			
-			return BoardDAO.executeUpdate(sql, new SQLInterUpdate() {
+			BoardDAO.executeUpdate(sql, new SQLInterUpdate() {
 				@Override
 				public void proc(PreparedStatement ps) throws SQLException {
 					ps.setNString(1, title);
@@ -64,6 +66,8 @@ public class BoardService {
 					ps.setInt(4, SecurityUtils.getLoingUserPk(request));
 				}
 			});
+			
+			return "detail?i_board=" + i_board;
 		}
 	}
 	

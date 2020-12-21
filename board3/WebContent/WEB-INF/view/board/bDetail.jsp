@@ -22,10 +22,9 @@
 	</div>
 	<div style="margin-top: 20px;">
 		<div>
-			<form action="/cmt" method="post">
-				<input type="hidden" name="typ" value="${data.typ}">
+			<form action="cmt/reg" method="post">				
 				<input type="hidden" name="i_board" value="${data.i_board}">
-				댓글: <input type="text" name="cmt_ctnt">
+				댓글: <input type="text" name="ctnt">
 				<input type="submit" value="댓글쓰기">
 			</form>
 		</div>

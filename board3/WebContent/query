@@ -1,0 +1,10 @@
+CREATE TABLE t_board_cmt (
+	i_cmt INT(10) UNSIGNED AUTO_INCREMENT,
+	i_board INT(10) UNSIGNED NOT null,
+	i_user INT UNSIGNED,
+	ctnt VARCHAR(200) NOT NULL,
+	r_dt DATETIME DEFAULT NOW(),
+	PRIMARY KEY (`i_cmt`),
+	FOREIGN KEY (`i_board`) REFERENCES t_board(i_board),
+	FOREIGN KEY (i_user) REFERENCES t_user(i_user)
+);
