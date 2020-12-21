@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>      
 <div>
 	<div>		
-		<a href="bRegmod?typ=${typ}"><button>글쓰기</button></a>
+		<a href="regmod?typ=${typ}"><button>글쓰기</button></a>
 	</div>
 	<table>
 		<tr>
@@ -26,7 +26,7 @@
 	<div class="pageContainer">
 		<c:forEach begin="1" end="${pageCnt}" var="i">
 			<span class="page">
-				<a href="/bList?typ=${typ}&page=${i}">${i}</a>
+				<a href="list?typ=${typ}&page=${i}">${i}</a>
 			</span>
 		</c:forEach>
 	</div>

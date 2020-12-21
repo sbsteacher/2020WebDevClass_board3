@@ -38,7 +38,7 @@ public class BoardService {
 					+ " FROM t_board "
 					+ " WHERE typ = ? ";
 			
-			BoardDAO.executeUpdate(sql, new SQLInterUpdate() {
+			return BoardDAO.executeUpdate(sql, new SQLInterUpdate() {
 				@Override
 				public void proc(PreparedStatement ps) throws SQLException {
 					ps.setInt(1, typ);
@@ -49,13 +49,29 @@ public class BoardService {
 				}
 			});			
 		} else { //수정
+			String sql = " UPDATE t_board "
+					+ " SET title = ? "
+					+ " , ctnt = ? "
+					+ " WHERE i_board = ? "
+					+ " AND i_user = ? ";
 			
-		}		
-		return 0;
+			return BoardDAO.executeUpdate(sql, new SQLInterUpdate() {
+				@Override
+				public void proc(PreparedStatement ps) throws SQLException {
+					ps.setNString(1, title);
+					ps.setNString(2, ctnt);
+					ps.setInt(3, i_board);
+					ps.setInt(4, SecurityUtils.getLoingUserPk(request));
+				}
+			});
+		}
 	}
 	
 	public static BoardSEL detail(HttpServletRequest request) {
 		int i_board = Utils.getIntParam(request, "i_board");
+		if(i_board == 0) {
+			return null;
+		}
 		BoardPARAM p = new BoardPARAM();
 		p.setI_board(i_board);
 		

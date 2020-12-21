@@ -6,7 +6,7 @@
 	
 	<c:if test="${data.i_user == loginUser.i_user}">
 		<button onclick="clkDel(${data.i_board}, ${data.typ});">삭제</button>
-		<a href="bRegmod?i_board=${data.i_board}">
+		<a href="regmod?typ=${data.typ}&i_board=${data.i_board}">
 			<button>수정</button>
 		</a>
 	</c:if>
