@@ -7,13 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/board/cmt/reg")
-public class BoardCmtRegSer extends HttpServlet {
+@WebServlet("/board/cmt/del")
+public class BoardCmtDelSer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = BoardCmtService.reg(request);		
-		response.sendRedirect(url);
-	}
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.sendRedirect(BoardCmtService.del(request));
+	}
 }

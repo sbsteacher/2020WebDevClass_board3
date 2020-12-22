@@ -20,6 +20,13 @@ public class BoardDetailSer extends HttpServlet {
 			response.sendRedirect("/login");
 			return;
 		}
+		int err = Utils.getIntParam(request, "err");
+		switch(err) {
+			case 1:
+				request.setAttribute("err", "댓글 내용이 너무 깁니다.");
+			break;
+		}
+		
 		request.setAttribute("jsList", new String[]{"board"});
 		BoardSEL data = BoardService.detail(request);
 		request.setAttribute("data", data);

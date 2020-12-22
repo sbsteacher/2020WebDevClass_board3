@@ -23,19 +23,32 @@
 	<div style="margin-top: 20px;">
 		<div>
 			<form action="cmt/reg" method="post">				
-				<input type="hidden" name="i_board" value="${data.i_board}">
+				<input type="hidden" name="i_board" value="${data.i_board}">				
 				댓글: <input type="text" name="ctnt">
 				<input type="submit" value="댓글쓰기">
 			</form>
-		</div>
+		</div>		
 		<div>
 			<table>
 				<tr>					
-					<th>댓글</th>					
+					<th>내용</th>
+					<th>작성자</th>
+					<th>작성일</th>
+					<th>비고</th>					
 				</tr>
 				<c:forEach items="${cmtList}" var="item">
 					<tr>
 						<td>${item.ctnt}</td>
+						<td>${item.user_nm}</td>
+						<td>${item.r_dt}</td>
+						<td>
+							<c:if test="${item.i_user == loginUser.i_user}">
+								<a href="cmt/del?i_cmt=${item.i_cmt}&i_board=${data.i_board}">
+									<button>삭제</button>
+								</a>
+								<button>수정</button>
+							</c:if>
+						</td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -44,12 +57,6 @@
 	</div>
 </div>
 <script>
-	function isDel(e) {
-		var result = confirm('삭제 하시겠습니까?');
-		if(!result) {
-			e.preventDefault();
-		}
-	}
 	<c:if test="${msg != null}">
 		alert('${msg}');
 	</c:if>

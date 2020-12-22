@@ -2,10 +2,10 @@ package com.koreait.board3.board;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.koreait.board3.board.cmt.BoardCmtService;
 import com.koreait.board3.common.SecurityUtils;
 import com.koreait.board3.common.Utils;
 import com.koreait.board3.db.BoardDAO;
@@ -78,6 +78,8 @@ public class BoardService {
 		}
 		BoardPARAM p = new BoardPARAM();
 		p.setI_board(i_board);
+		
+		request.setAttribute("cmtList", BoardCmtService.selBoardCmtList(p));
 		
 		return BoardDAO.selBoard(p);
 	}
