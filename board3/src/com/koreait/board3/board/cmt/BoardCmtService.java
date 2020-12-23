@@ -44,6 +44,32 @@ public class BoardCmtService {
 		return BoardCmtDAO.selCmtList(p);
 	}
 	
+	public static String mod(HttpServletRequest request) {
+		int i_board = Utils.getIntParam(request, "i_board");
+		int i_cmt = Utils.getIntParam(request, "i_cmt");
+		int i_user = SecurityUtils.getLoingUserPk(request);		
+		String ctnt = request.getParameter("ctnt");
+		
+		String sql = " UPDATE t_board_cmt"
+				+ " SET ctnt = ?"
+				+ " WHERE i_cmt = ? AND i_user = ?";
+		
+		int result = BoardCmtDAO.executeUpdate(sql, new SQLInterUpdate() {
+			@Override
+			public void proc(PreparedStatement ps) throws SQLException {
+				ps.setNString(1, ctnt);
+				ps.setInt(2, i_cmt);
+				ps.setInt(3, i_user);
+			}
+		});
+		
+		String url = "../detail?i_board="+i_board;		
+		if(result != 1) {
+			url += "&err=2";
+		}
+		return url;
+	}
+	
 	public static String del(HttpServletRequest request) {
 		String i_board = request.getParameter("i_board");
 		int i_cmt = Utils.getIntParam(request, "i_cmt");

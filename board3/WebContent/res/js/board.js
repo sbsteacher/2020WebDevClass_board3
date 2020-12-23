@@ -20,4 +20,24 @@ function chk() {
 	}
 }
 
+//댓글에서 수정버튼 클릭 > 수정FORM 나타나게 처리
+function clkCmtMod(i_cmt) {
+	var trForm = document.querySelector('#mod_' + i_cmt);
+	trForm.classList.remove('cmd_mod_form');
+	console.log(trForm);
+}
+
+function clkCmtClose(i_cmt) {
+	var trForm = document.querySelector('#mod_' + i_cmt);
+	trForm.classList.add('cmd_mod_form');
+}
+
+
+
+
+
+
+
+
+
 

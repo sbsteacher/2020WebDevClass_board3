@@ -78,7 +78,7 @@ public class BoardService {
 		}
 		BoardPARAM p = new BoardPARAM();
 		p.setI_board(i_board);
-		
+		p.setI_user(SecurityUtils.getLoingUserPk(request));
 		request.setAttribute("cmtList", BoardCmtService.selBoardCmtList(p));
 		
 		return BoardDAO.selBoard(p);

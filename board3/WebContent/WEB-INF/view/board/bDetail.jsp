@@ -46,14 +46,41 @@
 								<a href="cmt/del?i_cmt=${item.i_cmt}&i_board=${data.i_board}">
 									<button>삭제</button>
 								</a>
-								<button>수정</button>
+								<button onclick="clkCmtMod(${item.i_cmt});">수정</button>
 							</c:if>
 						</td>
 					</tr>
+					<c:if test="${item.i_user == loginUser.i_user}">
+						<tr id="mod_${item.i_cmt}" class="cmd_mod_form">
+							<td colspan="4">
+								<form action="cmt/mod" method="post">
+									<input type="hidden" name="i_board" value="${data.i_board}">
+									<input type="hidden" name="i_cmt" value="${item.i_cmt}">
+									<input type="text" name="ctnt" value="${item.ctnt}">
+									<input type="submit" value="수정">
+									<!--input type="button" value="닫기" onclick="clkCmtClose(${item.i_cmt});"-->
+									<button type="button" onclick="clkCmtClose(${item.i_cmt});">닫기</button>
+								</form>
+							</td>
+						</tr>
+					</c:if>
 				</c:forEach>
 			</table>
 		
 		</div>
+	</div>
+	
+	<div id="favoriteContainer">
+	${item.is_favorite}
+		<c:choose>
+			<c:when test="${item.is_favorite == 1}">
+				<i class="fas fa-heart"></i>
+			</c:when>
+			<c:otherwise>
+				<i class="far fa-heart"></i>
+			</c:otherwise>
+		</c:choose>
+		
 	</div>
 </div>
 <script>
