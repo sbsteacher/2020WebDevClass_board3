@@ -1,3 +1,4 @@
+'use strict'
 
 //글 제목 클릭
 function clkArticle(i_board) {		
@@ -32,6 +33,29 @@ function clkCmtClose(i_cmt) {
 	trForm.classList.add('cmd_mod_form');
 }
 
+function toggleFavorite(i_board) {
+	var fc = document.querySelector('#favoriteContainer');
+	var state = fc.getAttribute('is_favorite'); //1: 좋아요, 0:안 좋아요	
+	var state = 1 - state;
+	
+	axios.get('/board/ajaxFavorite', {
+		params: {
+			'state': state,
+			'i_board': i_board
+		}	
+	}).then(function(res) { //통신 성공
+		console.log(res);
+		if(res.data.result == 1) {
+			var iconClass = state == 1 ? 'fas' : 'far';
+			fc.innerHTML = `<i class="${iconClass} fa-heart"></i>`;
+			fc.setAttribute('is_favorite', state);
+		} else {
+			alert('에러가 발생하였습니다.');
+		}
+	}).catch(function(err) { //통신 실패
+		console.err('err 발생 : ' + err);
+	});
+}
 
 
 
